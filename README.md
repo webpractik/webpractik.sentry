@@ -1,7 +1,7 @@
 # webpractik.sentry
 
 ## Описание
-Модуль для отправки ошибков бэкенда в Sentry  
+Модуль для отправки ошибок бэкенда в Sentry  
 Класс модуля отнаследован от Bitrix\Main\Diag\ExceptionHandlerLog
 
 ## Установка
