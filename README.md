@@ -96,6 +96,6 @@ if (class_exists('Dotenv\\Dotenv')) {
 1. Удалить ключи `extension` и `required_file` из файла `bitrix/.settings.php`
 2. В `class_name` изменить класс на `'\\Webpractik\\Sentry\\SentryException'`
 3. Деактивировать и удалить модуль в админ панели
-4. В файле `composer.json` изменить версию пакета `webpractik/sentry` на 2.0
+4. В файле `composer.json` изменить версию пакета `webpractik/sentry` на ^2.0
 5. Выполнить в консоли `composer update webpractik/sentry`
 6. Сбросить кеш загрузчика composer, если возникнут ошибки `composer dump-autoload`
