@@ -16,8 +16,8 @@
   ],
   "require": {
     "php": ">=7.1",
-    "sentry/sdk": "2.1.0",
-    "vlucas/phpdotenv": "^4.1"
+    "sentry/sdk": "^2",
+    "vlucas/phpdotenv": "^4"
   },
   "autoload": {
     "psr-4": {
