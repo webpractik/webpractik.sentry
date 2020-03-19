@@ -2,16 +2,26 @@
   "name": "webpractik/sentry",
   "description": "Module sending logs to sentry",
   "keywords": ["bitrix", "sentry", "log"],
-  "type": "bitrix-d7-module",
+  "type": "library",
   "license": "MIT",
   "authors": [
+    {
+      "name": "Sergey Voloshin",
+      "email": "git@varrcan.me"
+    },
     {
       "name": "Петр Кленкин (mnlght)",
       "email": "pk@webpractik.ru"
     }
   ],
   "require": {
-    "composer/installers": ">=1.0.22 <2.0",
-    "sentry/sdk": "2.0.2"
+    "php": ">=7.1",
+    "sentry/sdk": "2.1.0",
+    "vlucas/phpdotenv": "^4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Webpractik\\": "src/"
+    }
   }
 }
