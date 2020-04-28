@@ -40,27 +40,15 @@ SENTRY_DSN=https://<key>@sentry.io/<project>
 
 ### Получение переменных из .env файла
 
-Вместе с пакетом зависимостью устанавливается библиотека `vlucas/phpdotenv`, посредством которой можно получить переменные из `.env` файла
+Вместе с пакетом зависимостью устанавливается библиотека `vlucas/phpdotenv`, посредством которой можно получить переменные из `.env` (по умолчанию) файла
 
 Для этого в `init.php` нужно прописать:
 
 ```php
 if (class_exists('Dotenv\\Dotenv')) {
-    $env = Dotenv\Dotenv::createImmutable(__DIR__);
-
-    try {
-        $env->load();
-    } catch (InvalidFileException | InvalidPathException $e) {
-    }
-}
-``` 
-
-Если на проекте используется другое имя файла, его можно задать вторым параметром:
-
-```php
-if (class_exists('Dotenv\\Dotenv')) {
-    $env = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'], '.environment');
-
+    $env = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+    // Если на проекте используется другое имя файла, его можно задать вторым параметром
+    // пример, $env = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'], '.environment');
     try {
         $env->load();
     } catch (InvalidFileException | InvalidPathException $e) {
@@ -72,6 +60,19 @@ if (class_exists('Dotenv\\Dotenv')) {
 
 > В примере указана проверка на существование класса Dotenv, чтобы при первом деплое на production-сервер не вызвать ошибку (пока не отработает composer install)
 
+**Если у вас уже установлен Laravel**, то может возникнуть ошибка конфликта версий пакета `vlucas/phpdotenv`, проверьте что установили подходящий.  
+Подключение для старой (^3.3) версии пакета тоже отличается:
+```php
+if (class_exists('Dotenv\\Dotenv')) {
+    $env = Dotenv\Dotenv::create($_SERVER['DOCUMENT_ROOT']); // изменение тут, в старой версии нет метода createImmutable
+    // Если на проекте используется другое имя файла, его можно задать вторым параметром
+    // пример, $env = Dotenv\Dotenv::create($_SERVER['DOCUMENT_ROOT'], '.environment');
+    try {
+        $env->load();
+    } catch (InvalidFileException | InvalidPathException $e) {
+    }
+}
+``` 
 
 ### Настройка Bitrix
 
