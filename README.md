@@ -6,7 +6,9 @@
 Класс модуля отнаследован от Bitrix\Main\Diag\FileExceptionHandlerLog
 
 ## Требования
-PHP >= 7.2
+
+- Composer
+- Версия PHP >= 7.2
 
 ## Установка
 
@@ -31,16 +33,29 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 
 ```dotenv
 APP_ENV=production
-SENTRY_DSN=https://<key>@sentry.w6p.ru/<project>
+SENTRY_DSN=https://<key>@sentry.io/<project>
 ```
 
 > Чтобы при разработке на локальной версии сайта ошибки не отправлялись в Sentry, нужно в переменной APP_ENV указать значение 'local'. На production-сервер должно быть установлено 'production'
 
 ### Получение переменных из .env файла
 
-Вместе с пакетом зависимостью устанавливается библиотека `vlucas/phpdotenv`, посредством которой можно получить переменные из .env файла
+Вместе с пакетом зависимостью устанавливается библиотека `vlucas/phpdotenv`, посредством которой можно получить переменные из `.env` файла
 
 Для этого в `init.php` нужно прописать:
+
+```php
+if (class_exists('Dotenv\\Dotenv')) {
+    $env = Dotenv\Dotenv::createImmutable(__DIR__);
+
+    try {
+        $env->load();
+    } catch (InvalidFileException | InvalidPathException $e) {
+    }
+}
+``` 
+
+Если на проекте используется другое имя файла, его можно задать вторым параметром:
 
 ```php
 if (class_exists('Dotenv\\Dotenv')) {
