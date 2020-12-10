@@ -5,6 +5,9 @@
 Модуль для отправки PHP ошибок Bitrix в Sentry  
 Класс модуля отнаследован от Bitrix\Main\Diag\FileExceptionHandlerLog
 
+## Требования
+PHP >= 7.2
+
 ## Установка
 
 Установка пакета
