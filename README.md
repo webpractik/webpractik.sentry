@@ -29,7 +29,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 
 ### Определение переменных
 
-Для получения окружения и URL используется функция `getenv()`, поэтому в .env файле нужно определить две переменные:
+Для установки окружения и URL sentry в .env файле нужно определить две переменные:
 
 ```dotenv
 APP_ENV=production
