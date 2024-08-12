@@ -51,13 +51,13 @@ class SentryException extends FileExceptionHandlerLog
      */
     public function initSentry():void
     {
-        $environment = getenv('APP_ENV');
+        $environment = $_ENV['APP_ENV'];
 
         // инициализация Sentry
         if ($environment && $environment !== 'local' && function_exists('Sentry\init')) {
             init(
                 [
-                    'dsn'         => getenv('SENTRY_DSN'),
+                    'dsn'         => $_ENV['SENTRY_DSN'],
                     'environment' => $environment,
                     'error_types' => $this->level
                 ]
